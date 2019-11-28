@@ -269,8 +269,13 @@ def encript(plain,key):
 
 
 x=[]
-plain= "azhaalvinrahmans"
-key=   "1234567892345670"
+# 16 key 
+# "azhaalvinrahmans"
+# "1234567892345670"
+val = input("input your name : ")
+plain = val
+valKey = input("input your key : ")
+key= valKey
 x = encript(plain,key)
 
 #print(x)
