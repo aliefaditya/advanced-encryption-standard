@@ -1,3 +1,5 @@
+from tkinter import *
+
 #SBOX
 Rcon = [[0x8d, 0x01, 0x02, 0x04], [0x08, 0x10, 0x20, 0x40], [0x80, 0x1b, 0x36,0x6c], [0xd8, 0xab, 0x4d, 0x9a] ]
 Sbox = [
@@ -272,10 +274,66 @@ x=[]
 # 16 key 
 # "azhaalvinrahmans"
 # "1234567892345670"
-val = input("input your name : ")
-plain = val
-valKey = input("input your key : ")
-key= valKey
-x = encript(plain,key)
+# val = input("input your name : ")
+# plain = val
+# valKey = input("input your key : ")
+# key= valKey
+# x = encript(plain,key)
 
 #print(x)
+
+#GUI 
+def encrypt_data():
+     
+  plainText_info = plainText.get()
+  key_info = key.get()
+ 
+  file=open(plainText_info+".txt", "w")
+  file.write(plainText_info+"\n")
+  file.write(key_info)
+  file.close()
+ 
+  plainText_entry.delete(0, END)
+  key_entry.delete(0, END)
+ 
+def encrypt():
+  global screen1
+  screen1 = Toplevel(screen)
+  screen1.title("AES")
+  screen1.geometry("300x250")
+   
+  global plainText
+  global key
+  global plainText_entry
+  global key_entry
+  plainText = StringVar()
+  key = StringVar()
+ 
+  Label(screen1, text = "Please enter details below").pack()
+  Label(screen1, text = "").pack()
+  Label(screen1, text = "PlainText * ").pack()
+  plainText_entry = Entry(screen1, textvariable = plainText)
+  plainText_entry.pack()
+  Label(screen1, text = "key * ").pack()
+  key_entry =  Entry(screen1, textvariable = key)
+  key_entry.pack()
+  Label(screen1, text = "").pack()
+  Button(screen1, text = "Encrypt", width = 10, height = 1, command = encrypt_data).pack()
+ 
+def login():
+  print("Login session started")
+ 
+ 
+def main_screen():
+  global screen
+  screen = Tk()
+  screen.geometry("300x250")
+  screen.title("Notes 1.0")
+  Label(text = "Notes 1.0", bg = "grey", width = "300", height = "2", font = ("Calibri", 13)).pack()
+  Label(text = "").pack()
+  Button(text = "Encrypt Here",height = "2", width = "30", command = encrypt).pack()
+ 
+  screen.mainloop()
+ 
+main_screen()
+  
